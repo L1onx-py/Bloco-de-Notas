@@ -1,0 +1,38 @@
+Diagrama de classes:
+
+UML = Unified Modeling Language
+
+|-----------------------------------------------------------|
+|LEGENDA:                                                   |
+|Público: "-" São os métodos que devem ser privados         |
+|Privado: "+" São  os métodos que devem ser públicos        |
+|-----------------------------------------------------------|
+|>>> ANOTAÇÃO;                                              |
+|-----------------------------------------------------------|
+|- Texto: String                                            |
+|- ID : int                                                 |
+|- dataDeCriacao : LocalDate                                |
+|- deletado : boolean                                       |
+|-----------------------------------------------------------|
+|>>> MÉTODOS:                                               |
+|-----------------------------------------------------------|
+|+ Anotacao (ID : int , Texto : String)                     | <- Escreve que o método vai receber
+|+ contemTexto ( Texto : String): boolean                   |
+|+ getID ( ) : int                                          |
+|+ getTexto ( ) : String                                    |
+|+ setTexto (Texto : String)                                |
+|+ getData ( ) : LocalData                                  |
+|+ deleta ( ) : boolean                                     |
+|+ isDelatada ( ) : boolean                                 |
+|-----------------------------------------------------------|
+| >>> BLOCO DE NOTAS;                                       |
+|-----------------------------------------------------------|
+|- anotacao : List<Anotacao>                                |
+|-----------------------------------------------------------|
+|+ BlocoDeNotas ( )                                         |
+|+ adiciomarAnotacao (Texto : String): Anotacao             |
+|+ buscaAmotacao (ID : int): Anotacao                       |
+|+ editarAnotacao (ID : int) : Anotacao                     |
+|+ recuperarPorTexto (buscarSTR : String) : List<Anotacao>  |
+|+ Listar ( ) : List<Anotacao>                              |
+|-----------------------------------------------------------|
