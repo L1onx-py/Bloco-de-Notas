@@ -18,12 +18,21 @@ public class Anotacao {
         this.deletado = false;
     }
 
+    public Anotacao(String texto) {
+        if (texto == null || texto.trim().isEmpty()) {
+            throw new IllegalArgumentException("Não pode deixar a anotação vazia!!!");
+        }
+    }
+
     //GETTERS E SETTERS:
     public String getTexto() {
         return texto;
     }
 
     public void setTexto(String novoTexto) {
+        if (novoTexto == null || novoTexto.trim().isEmpty()) {
+            throw new IllegalArgumentException("Não pode deixar a anotação vazia!!!");
+        }
         this.texto = novoTexto;
     }
 

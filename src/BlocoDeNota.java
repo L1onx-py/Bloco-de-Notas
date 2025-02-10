@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class BlocoDeNota {
     private List<Anotacao> anotacoes;
@@ -9,22 +10,29 @@ public class BlocoDeNota {
     }
 
     public void adicionarAnotacao(String texto) {
-        Anotacao novaAnotacao = new Anotacao(texto);
-        anotacoes.add(novaAnotacao);
-        System.out.println("Anotação adicionada com sucesso! ID: " + novaAnotacao.getID());
-
-    }
-
-    public void editAnotacao(int ID, String novoTexto) {
-        for (Anotacao anotacao : anotacoes) {
-            if (anotacao.getID() == ID && !anotacao.isDeletado()) {
-                anotacao.setTexto(novoTexto);
-                System.out.println("A anotação " + ID + " foi editada com êxito!!!");
-                return;
-            }
+        try {
+            Anotacao novaAnotacao = new Anotacao(texto);
+            anotacoes.add(novaAnotacao);
+            System.out.println("Anotação adicionada com êxito!!! ID: " + novaAnotacao.getID());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erro: Não foi possível adicionar a anotação " + e.getMessage());
         }
-        System.out.println("Nenhuma anotação registrada!! Tente novamente!");
     }
+
+    public void editAnotacao(int id, String novoTexto) {
+        Optional<Anotacao> anotacaoOpt = buscarAnotacoes(id);
+        if (anotacaoOpt.isPresent()) {
+            try {
+                anotacaoOpt.get().setTexto(novoTexto);
+                System.out.println("Anotação ID " + id + " editada com Êxito!!!");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Erro ao editar anotação: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Erro: Anotação com o ID " + id + " não foi encontrada!!!.");
+        }
+    }
+
 
     public void removerAnotacao(int id) {
         for (Anotacao anotacao : anotacoes) {
